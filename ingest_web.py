@@ -1,9 +1,10 @@
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import SentenceTransformerEmbeddings
+from langchain_openai import OpenAIEmbeddings
+import os
 from langchain_community.vectorstores import FAISS 
-import numpy as np
 
+# Webpages to load
 urls = [
     "https://en.wikipedia.org/wiki/Eiffel_Tower",
     "https://en.wikipedia.org/wiki/Louvre",
@@ -17,18 +18,20 @@ loader = WebBaseLoader(urls)
 documents = loader.load()
 print(f"Loaded {len(documents)} documents from the web.", flush=True)
 
+# Split into chunks
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=800,
     chunk_overlap=100
 )
-
 chunks = text_splitter.split_documents(documents)
 print(f"Split the content into {len(chunks)} chunks.", flush=True)
 
-embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+# Use OpenAI embeddings (requires OPENAI_API_KEY)
+embedding_function = OpenAIEmbeddings(model="text-embedding-3-small")
 
-print("creating FAISS vector store and embeddings (this may take a while)...", flush=True)
+print("Creating FAISS vector store and embeddings (this may take a while)...", flush=True)
 vector_store = FAISS.from_documents(chunks, embedding_function)
 
+# Save FAISS index
 vector_store.save_local("faiss_index_travel")
 print("FAISS vector store created and saved to 'faiss_index_travel' directory.", flush=True)
