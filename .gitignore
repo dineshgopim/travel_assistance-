@@ -1,0 +1,4 @@
+.env
+faiss_index_travel/
+__pycache__/
+*.pyc

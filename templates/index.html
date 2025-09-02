@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Travel Assistant</title>
+  <style>
+      body { font-family: sans-serif; max-width: 700px; margin: 40px auto; padding: 20px; }
+      .chat-container { border: 1px solid #ccc; padding: 15px; height: 400px; overflow-y: auto; margin-bottom: 20px; }
+      .message { margin-bottom: 15px; }
+      .message.user { text-align: right; }
+      .message .bubble { display: inline-block; padding: 10px; border-radius: 10px; max-width: 80%; }
+      .message.user .bubble { background-color: #007bff; color: white; }
+      .message.assistant .bubble { background-color: #f1f1f1; color: black; }
+      .form-container { display: flex; }
+      textarea { flex-grow: 1; padding: 8px; font-size: 16px; margin-right: 10px;}
+      .context-container { margin-top: 30px; padding: 20px; border-radius: 8px; border: 1px solid #338290; background: #f9feff; box-shadow: 0 2px 6px rgba(0,0,0,0.15); text-align: left; }
+      .context-header { font-size: 16px; font-weight: bold; margin-bottom: 10px; color: #004d61; }
+      .context-text { font-family: monospace; font-size: 13px; white-space: pre-wrap; color: #333; max-height: 250px; overflow-y: auto; padding: 10px; background: #fff; border: 1px solid #ddd; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <center>
+    <h1><b>Smart Travel Assistant - France Edition</b></h1>
+    <p><em><u>Ask me about famous landmarks in France!</u></em></p>
+    <hr>
+    <div class="chat-container">
+      {% for role, text in chat_history %}
+        <div class="message {{ role }}">
+          <div class="bubble">
+            <b>{{ role.capitalize() }}:</b> {{ text | safe | nl2br }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <h2>Ask a Question</h2>
+    <form method="POST" action="/" class="form-container">
+      <textarea id="question" name="question" rows="4" placeholder="e.g., Tell me about the Eiffel Tower's history"></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <form method="POST" action="/clear" style="margin-top:10px;">
+      <button type="submit">Clear History</button>
+    </form>
+    {% if last_context %}
+    <div class="context-container">
+        <div class="context-header">
+            📖 Source Context for the last answer to: "{{ last_question }}"
+        </div>
+        <div class="context-text">
+            {{ last_context | safe }}
+        </div>
+    </div>
+    {% endif %}
+    <hr>
+    <p style="font-size:small;">
+      Tip: Use quotes or page numbers for sharper answers.
+    </p>
+  </center>
+</body>
+</html>
