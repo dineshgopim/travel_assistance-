@@ -6,7 +6,7 @@
 
 ## About The Project
 
-This project is a fully functional conversational AI assistant built using the RAG (Retrieval-Augmented Generation) pattern. The goal was to create a chatbot that could act as a knowledgeable and reliable tour guide for a specific domain—in this case, famous landmarks in France—without the risk of AI hallucination.
+This project is a fully functional conversational AI assistant built using the RAG (Retrieval-Augmented Generation) pattern. The goal was to create a chatbot that could act as a knowledgeable and reliable tour guide for a specific domain. In this case, famous landmarks in France, without the risk of AI hallucination.
 
 The application ingests data from live web pages, processes it into a searchable vector knowledge base, and uses this knowledge base to provide grounded, context-aware answers to user questions. It is designed to be conversational, capable of handling follow-up questions and topic changes intelligently.
 
