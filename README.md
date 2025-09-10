@@ -33,3 +33,59 @@ The application ingests data from live web pages, processes it into a searchable
 *   **Embedding Model:** `all-MiniLM-L6-v2`
 *   **Web Framework:** Flask
 *   **Core Libraries:** `python-dotenv`, `beautifulsoup4`, `numpy`
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these simple steps.
+
+### Prerequisites
+
+*   Python 3.10 or higher
+*   Git
+
+### Installation
+
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/your-username/travel_assistant.git
+    cd travel_assistant
+    ```
+
+2.  **Create a virtual environment:**
+    *   This keeps your project dependencies isolated.
+    ```sh
+    python -m venv venv
+    ```
+    *   Activate the environment:
+        *   On Windows: `venv\Scripts\activate`
+        *   On macOS/Linux: `source venv/bin/activate`
+
+3.  **Install the required packages:**
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+4.  **Set up your environment variables:**
+    *   Create a new file in the root of the project named `.env`.
+    *   Inside this file, add your Groq API key:
+    ```
+    GROQ_API_KEY="your_secret_api_key_here"
+    ```
+
+### Running the Application
+
+1.  **Build the knowledge base:**
+    *   First, you need to run the ingestion script to scrape the web pages and build the FAISS vector store. This only needs to be done once.
+    ```sh
+    python ingest_web.py
+    ```
+
+2.  **Start the Flask server:**
+    ```sh
+    python app.py
+    ```
+
+3.  **Open the application in your browser:**
+    *   Navigate to `http://127.0.0.1:5000`
+
+---
