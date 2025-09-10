@@ -24,3 +24,12 @@ The application ingests data from live web pages, processes it into a searchable
     *   Tracks used documents to avoid giving repetitive answers in a longer conversation.
 *   **Hallucination Prevention:** The system prompt is engineered to force the LLM to rely solely on the provided documents, politely declining to answer if the information is not in its knowledge base.
 *   **Source Transparency:** Displays the exact source text that was used to generate an answer, providing verifiability for the user.
+
+## 🛠️ Tech Stack
+
+*   **LLM & API:** Groq API (Llama3 8B)
+*   **AI Framework:** LangChain
+*   **Vector Store:** FAISS (Facebook AI Similarity Search)
+*   **Embedding Model:** `all-MiniLM-L6-v2`
+*   **Web Framework:** Flask
+*   **Core Libraries:** `python-dotenv`, `beautifulsoup4`, `numpy`
